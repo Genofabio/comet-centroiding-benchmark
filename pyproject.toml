@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kometra-benchmark"
+version = "1.0.0"
+description = "Benchmarking suite for Kometra AQP validation"
+dependencies = [
+    "numpy",
+    "scipy",
+    "astropy",
+    "opencv-python"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

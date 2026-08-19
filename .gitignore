@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Ignore all FITS files inside synthetic test directory
+data/synthetic_test/*.fits
+data/synthetic_test/**/*.fits
+
+# But keep the directory structure tracked via .gitkeep
+!data/synthetic_test/.gitkeep
+
+# Ignore ground truth CSV files
+data/synthetic_ground_truth.csv
