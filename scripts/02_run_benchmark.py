@@ -60,8 +60,10 @@ class CometAlgorithmTester:
         self.input_dir = input_dir
         self.truth_file = truth_file
         
-        self.output_csv = "results_benchmark_raw_data.csv"
-        self.output_txt = "results_benchmark_rankings.txt"
+        os.makedirs("results", exist_ok=True)
+        
+        self.output_csv = os.path.join("results", "results_benchmark_raw_data.csv")
+        self.output_txt = os.path.join("results", "results_benchmark_rankings.txt")
         
         self.algorithms = ALL_ALGORITHMS
         

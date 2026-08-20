@@ -10,11 +10,14 @@ import numpy as np
 class BenchmarkReanalyzer:
     def __init__(
         self,
-        raw_csv="results_benchmark_raw_data.csv",
-        output_txt="results_benchmark_rankings.txt",
+        raw_csv="results/results_benchmark_raw_data.csv",
+        output_txt="results/results_benchmark_rankings.txt",
     ):
         self.raw_csv = raw_csv
         self.output_txt = output_txt
+        
+        os.makedirs(os.path.dirname(self.raw_csv) if os.path.dirname(self.raw_csv) else "results", exist_ok=True)
+        
         self.raw_data = []
         self.algorithms = set()
         self.log_lines = []
@@ -213,7 +216,7 @@ class BenchmarkReanalyzer:
         for algo in sorted_catvar:
             m = metrics[algo]
             self._log_to_file(
-                f" {algo:<45} | {m['med_baseline']:.3f} px | {m['med_lowsnr']:.3f} px | {m['med_asymm']:.3f} px | {m['raw_cat_var']:.4f} px              | {m['s_catvar']:6.2f} / 100"
+                f" {algo:<45} | {m['med_baseline']:.3f} px | {m['med_lowsnr']:.3f} px | {m['med_asymm']:.3f} px | {m['raw_cat_var']:.4f} px               | {m['s_catvar']:6.2f} / 100"
             )
 
         # SECTION 5: FINAL GLOBAL RANKING
@@ -248,7 +251,7 @@ class BenchmarkReanalyzer:
         classic_keywords = ["Barycenter", "Interpolation", "Gradients", "Mapping", "Decomposition"]
         classic_algos = [a for a in self.algorithms if any(k in a for k in classic_keywords)]
 
-        self._log_to_file(f" [*] BEST OVERALL ALGORITHM:          '{top1}' (Composite Score: {metrics[top1]['composite_score']:.2f} / 100)")
+        self._log_to_file(f" [*] BEST OVERALL ALGORITHM:           '{top1}' (Composite Score: {metrics[top1]['composite_score']:.2f} / 100)")
         self._log_to_file(f" [*] RUNNER-UP:                       '{top2}' (Composite Score: {metrics[top2]['composite_score']:.2f} / 100)")
 
         if classic_algos:

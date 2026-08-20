@@ -226,3 +226,7 @@ data/synthetic_test/**/*.fits
 
 # Ignore ground truth CSV files
 data/synthetic_ground_truth.csv
+
+# Ignore contents of the results directory
+results/*
+!results/.gitkeep
