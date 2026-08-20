@@ -30,14 +30,15 @@ This repository provides:
 
 ```text
 comet-centroiding-benchmark/
-├── src/                     # Core source code for simulation, benchmark, and analysis
-├── data/                    # Local working directory for datasets and ground truth
-├── 01_generate_dataset.py   # Generate synthetic FITS images and CSV annotations
-├── 02_run_benchmark.py      # Execute the centroiding benchmark tests
-├── 03_analyze_results.py    # Generate statistical reports and validation plots
-├── run.py                   # Master control script for the pipeline
-├── pyproject.toml           # Package configuration and dependencies
-└── LICENSE                  # GNU General Public License v3.0
+├── src/                    # Core source code for simulation, benchmark, and analysis
+├── data/                   # Local working directory for datasets and ground truth
+├── results/                # Output directory for benchmark data and analysis reports
+├── 01_generate_dataset.py  # Generate synthetic FITS images and CSV annotations
+├── 02_run_benchmark.py     # Execute the centroiding benchmark tests
+├── 03_analyze_results.py   # Generate statistical reports and validation plots
+├── run.py                  # Master control script for the pipeline
+├── pyproject.toml          # Package configuration and dependencies
+└── LICENSE                 # GNU General Public License v3.0
 ```
 
 ---
@@ -117,14 +118,13 @@ If you use **Kometra**, its benchmark suite, or the associated dataset in your r
 ```bibtex
 @dataset{genovese_2026_dataset,
   author       = {Genovese, Fabio},
-  title        = {{Astrometric and Morphological Validation Dataset for
-                   Kometra (Synthetic Comet Benchmark Suite)}},
+  title        = {{Synthetic Cometary Dataset for Centroiding Algorithm Selection (Kometra Benchmark Suite)}},
   month        = aug,
   year         = 2026,
   publisher    = {Zenodo},
   version      = {1.0.0},
   doi          = {10.5281/zenodo.22014532},
-  url          = {https://doi.org/10.5281/zenodo.22014532}
+  url          = {[https://doi.org/10.5281/zenodo.22014532](https://doi.org/10.5281/zenodo.22014532)}
 }
 ```
 
