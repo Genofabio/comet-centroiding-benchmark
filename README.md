@@ -1,6 +1,6 @@
 # Comet Centroiding Benchmark: Astrometric & Morphological Validation Suite
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22027201.svg)](https://doi.org/10.5281/zenodo.22027201)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22027200.svg)](https://doi.org/10.5281/zenodo.22027200)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 
@@ -61,7 +61,7 @@ pip install -e .
 For reproducible benchmarking, it is recommended to use the official standardized test suite published on Zenodo.
 
 > **Dataset Reference:** Genovese, F. (2026). *Astrometric and Morphological Validation Dataset for Kometra (Synthetic Comet Benchmark Suite)*. Zenodo.
-> DOI: [10.5281/zenodo.22014532](https://doi.org/10.5281/zenodo.22014532)
+> DOI: [10.5281/zenodo.22014531](https://doi.org/10.5281/zenodo.22014531)
 
 ### Setup Steps
 
@@ -125,7 +125,7 @@ If you use **Kometra**, its benchmark suite, or the associated dataset in your r
   publisher    = {Zenodo},
   version      = {1.0.0},
   doi          = {10.5281/zenodo.22014532},
-  url          = {[https://doi.org/10.5281/zenodo.22014532](https://doi.org/10.5281/zenodo.22014532)}
+  url          = {[https://doi.org/10.5281/zenodo.22014531](https://doi.org/10.5281/zenodo.22014531)}
 }
 ```
 
@@ -161,6 +161,5 @@ This ensures that benchmark results can be independently reproduced and compared
 * **Source repository (Benchmark):** https://github.com/Genofabio/comet-centroiding-benchmark
 * **Kometra (Core Software):** https://github.com/Genofabio/kometra
 * **PoliTO Astronomy Fork:** https://github.com/PoliTO-Astronomy/Kometra
-* **Official dataset (Zenodo):** https://doi.org/10.5281/zenodo.22014532
-* **Dataset DOI:** `10.5281/zenodo.22014532`
+* **Official dataset (Zenodo):** https://doi.org/10.5281/zenodo.22014531
 * **License:** https://www.gnu.org/licenses/gpl-3.0
