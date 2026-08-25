@@ -119,6 +119,7 @@ class BenchmarkReanalyzer:
             if not vals: return {algo: 0.0 for algo in raw_dict}
             min_v, max_v = min(vals), max(vals)
             rng = max_v - min_v if max_v != min_v else 1.0
+            # Per i tempi (e gli errori), un valore minore è migliore. La formula assegna 100 al min_v e 0 al max_v.
             return {algo: 100.0 * (1.0 - (m[key] - min_v) / rng) if m[key] != float('inf') else 0.0 for algo, m in raw_dict.items()}
 
         s_drift = norm_100(raw_metrics, "raw_click_drift")
@@ -219,9 +220,25 @@ class BenchmarkReanalyzer:
                 f" {algo:<45} | {m['med_baseline']:.3f} px | {m['med_lowsnr']:.3f} px | {m['med_asymm']:.3f} px | {m['raw_cat_var']:.4f} px               | {m['s_catvar']:6.2f} / 100"
             )
 
-        # SECTION 5: FINAL GLOBAL RANKING
+        # SECTION 5: EXECUTION SPEED
         self._log_to_file("\n" + "-" * 150)
-        self._log_to_file(" 5. FINAL WEIGHTED RANKING (DIMENSIONLESS MULTI-CRITERIA MATRIX 0-100)")
+        self._log_to_file(" 5. EXECUTION SPEED (Average computational time per centroiding operation)")
+        self._log_to_file("-" * 150)
+        self._log_to_file(
+            f" {'ALGORITHM':<45} | {'MEAN TIME':<18} | {'SPEED SCORE (5%)':<25}"
+        )
+        self._log_to_file("-" * 150)
+        
+        sorted_time = sorted(self.algorithms, key=lambda a: metrics[a]["s_time"], reverse=True)
+        for algo in sorted_time:
+            m = metrics[algo]
+            self._log_to_file(
+                f" {algo:<45} | {m['raw_time_ms']:8.2f} ms       | {m['s_time']:6.2f} / 100"
+            )
+
+        # SECTION 6: FINAL GLOBAL RANKING
+        self._log_to_file("\n" + "-" * 150)
+        self._log_to_file(" 6. FINAL WEIGHTED RANKING (DIMENSIONLESS MULTI-CRITERIA MATRIX 0-100)")
         self._log_to_file(
             f"    [Weights: Click Invar. = {self.weights['click_drift']*100:.0f}% | Optimal Acc. = {self.weights['best_accuracy']*100:.0f}% | "
             f"ROI Invar. = {self.weights['window_sensitivity']*100:.0f}% | Morpho Invar. = {self.weights['morpho_insensitivity']*100:.0f}% | "
@@ -237,12 +254,12 @@ class BenchmarkReanalyzer:
                 f" {rank:2d}. {algo:<45} | SCORE: {m['composite_score']:6.2f} / 100 | "
                 f"[ClickDrift: {m['s_drift']:5.1f}pt | OptAcc: {m['s_acc']:5.1f}pt | "
                 f"InvarROI: {m['s_winvar']:5.1f}pt | InvarMorph: {m['s_catvar']:5.1f}pt | "
-                f"Speed: {m['s_time']:5.1f}pt ({m['raw_time_ms']:.1f}ms)]"
+                f"Speed: {m['s_time']:5.1f}pt ({m['raw_time_ms']:.2f}ms)]"
             )
 
-        # SECTION 6: CRITICAL SYNTHESIS
+        # SECTION 7: CRITICAL SYNTHESIS
         self._log_to_file("\n" + "-" * 150)
-        self._log_to_file(" 6. CRITICAL SYNTHESIS OF RESULTS")
+        self._log_to_file(" 7. CRITICAL SYNTHESIS OF RESULTS")
         self._log_to_file("=" * 150)
 
         top1 = sorted_final[0]
