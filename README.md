@@ -139,20 +139,27 @@ See the [`LICENSE`](LICENSE) file for the complete license terms.
 
 ---
 
-## 8. Reproducibility
+## 8. Reproducibility & Determinism
 
-The official Zenodo dataset provides a fixed and versioned benchmark reference for reproducible evaluation.
+### 8.1 Synthetic Dataset Generation
+The generation pipeline (`01_generate_dataset.py`) is fully deterministic and bitwise reproducible. All stochastic processes—including cometary morphology sampling, Moffat stellar field placement, background gradients, Poisson shot noise, and sensor defects—are governed by a fixed pseudo-random master seed:
 
-For published research, it is recommended to report:
+```python
+np.random.seed(42)  # Set in 01_generate_dataset.py: main()
+```
 
-* the Kometra Benchmark version;
-* the Zenodo dataset version;
-* the benchmark configuration;
-* the centroiding methods evaluated;
-* the ROI/window sizes used;
-* the resulting astrometric error metrics.
+Running `python 01_generate_dataset.py` (or `python run.py all`) strictly regenerates the identical 300 FITS files and ground-truth coordinates (`data/synthetic_ground_truth.csv`) permanently archived on Zenodo (DOI: [10.5281/zenodo.22014531](https://doi.org/10.5281/zenodo.22014531)).
 
-This ensures that benchmark results can be independently reproduced and compared across implementations.
+### 8.2 Reporting Benchmark Results
+The official Zenodo dataset serves as the standardized, version-controlled reference suite. For published research, it is recommended to report:
+
+- Kometra Benchmark software version (e.g., `v1.0.1`);
+- Zenodo dataset DOI and version;
+- Generation master seed (`seed=42`);
+- Evaluated centroiding algorithms and ROI/window parameters;
+- Astrometric error metrics and execution environment details.
+
+This ensures that benchmark and validation results can be independently verified and compared across implementations.
 
 ---
 
